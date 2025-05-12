@@ -21,12 +21,12 @@ ingredients = input("List of ingredients (for example, chicken, potatoes, and ca
 filter = input("Filter (for example, vegetarian, vegan, or gluten-free: ")
 
 # interpolate the number of recipes into the prompt an ingredients
-prompt = f"Show me {no_recipes} recipes for a dish with the following ingredients: {ingredients}. Per recipe, list all the ingredients used, no {filter}: "
+prompt = f"Show me {no_recipes} recipes for a dish with the following ingredients: {ingredients}. Per recipe, list all the ingredients used, and make sure it follows these restrictions: {filter}: "
 messages = [{"role": "user", "content": prompt}]
 
 completion = client.chat.completions.create(model=deployment, messages=messages, max_tokens=600, temperature = 0.1)
-
-
+print("prompt: ", prompt)
+print("messages: ", messages)
 # print response
 print("Recipes:")
 print(completion.choices[0].message.content)
